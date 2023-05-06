@@ -38,22 +38,32 @@ reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProf
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games" /v "Scheduling Category" /t REG_SZ /d High /f
 bcdedit /set disabledynamictick yes
 bcdedit /deletevalue useplatformclock
+
 :: 불필요 프로세스 종료
 for /f "tokens=*" %%A in ('tasklist /fi "status eq running"') do (
 if %%~nA==svchost (
 echo No Taskkill
 ) else if %%~nA==WindowsTerminal (
 echo No Taskkill
-) else if %%~nA==conhost (
+) else if %%~nA==dwm (
+echo No Taskkill
+) else if %%~nA==sihost (
 echo No Taskkill
 ) else if %%~nA==cmd (
+echo No Taskkill
+) else if %%~nA==conhost (
+echo No Taskkill
+) else if %%~nA==NVDisplay.Container (
 echo No Taskkill
 ) else (
 taskkill /f /im %%~nA.exe
 )
-) > nul
+)
+
 :: 레지딧 변경사항을 컴퓨터 로그오프 없이 업데이트
 RUNDLL32.EXE user32.dll, UpdatePerUserSystemParameters ,1 ,True
 RUNDLL32.EXE user32.dll, UpdatePerUserSystemParameters ,1 ,True
 RUNDLL32.EXE user32.dll, UpdatePerUserSystemParameters ,1 ,True
+start explorer
+pause
 exit
