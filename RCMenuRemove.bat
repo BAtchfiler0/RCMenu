@@ -1,5 +1,5 @@
 @echo off
- :: °ü¸®ÀÚ ±ÇÇÑ ¿äÃ»
+ :: ê´€ë¦¬ìž ê¶Œí•œ ìš”ì²­
  ::--------------------------------
  :: Check for permissions
  >nul 2>&1 "%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system"
@@ -22,21 +22,21 @@
      pushd "%CD%"
      CD /D "%~dp0"
 
-rename %0 RCMenuSetup.bat
+rename %0 RCMenuRemove.bat
 
-:: Yes.txt°¡ ÀÖÀ¸¸é Yes·Î ÀÌµ¿
+:: Yes.txtê°€ ìžˆìœ¼ë©´ Yesë¡œ ì´ë™
 if exist "%temp%\yes.txt" goto yes
 
-:: ¾ø´Ù¸é
+:: ì—†ë‹¤ë©´
 :no
-:: yes.txt »èÁ¦, ques.vbs »èÁ¦
+:: yes.txt ì‚­ì œ, ques.vbs ì‚­ì œ
 del /f /q "%temp%\yes.txt"
 del /f /q "%temp%\ques.vbs"
-:: »èÁ¦ÇÒ°Ì´Ï±î? ¸¦ ¹°¾îº¸´Â ¸Þ½ÃÁö ¹Ú½º ¸¸µé±â
+:: ì‚­ì œí• ê²ë‹ˆê¹Œ? ë¥¼ ë¬¼ì–´ë³´ëŠ” ë©”ì‹œì§€ ë°•ìŠ¤ ë§Œë“¤ê¸°
 (
 echo Set fso = CreateObject^("Scripting.FileSystemObject"^)
 echo Set oShell = WScript.CreateObject ^("WSCript.shell"^)
-echo X = Msgbox^("RCMenuÀ» »èÁ¦ÇÒ°Ì´Ï±î?", vbQuestion + vbYesNo + 4096, "RCMenu"^)
+echo X = Msgbox^("RCMenuì„ ì‚­ì œí• ê²ë‹ˆê¹Œ?", vbQuestion + vbYesNo + 4096, "RCMenu"^)
 echo If X=vbYes then
 echo Set txtFile = fso.CreateTextFile^("%temp%\yes.txt", true^)
 echo oShell.Run ^(%0^)
@@ -45,18 +45,18 @@ echo ELSEIf X=vbNo then
 
 echo End If
 ) > "%temp%\ques.vbs"
-:: ½ÇÇàÇÏ°í Á¾·á
+:: ì‹¤í–‰í•˜ê³  ì¢…ë£Œ
 start "" "%temp%\ques.vbs"
 exit
 
-:: ÀÖ´Ù¸é
+:: ìžˆë‹¤ë©´
 :yes
 rd /s /q "%systemdrive%\Program Files\RCMenu"
-reg delete "HKCR\*\shell\RCMenu_ÆÄÀÏ ¼û±â±â" /f
-reg delete "HKCR\Directory\Background\shell\RCMenu_Windows Å¬¸®³Ê" /f
-reg delete "HKCR\Directory\Background\shell\RCMenu_»ç¾ç È®ÀÎ" /f
-reg delete "HKCR\Directory\Background\shell\RCMenu_ÆÄÀÏ º¸ÀÌ±â" /f
-echo X=msgbox ^("»èÁ¦ ¼º°ø", vbQustion + vbOk + 4096 ,"RCMenu"^) > "%temp%\delete.vbs"
+reg delete "HKCR\*\shell\RCMenu_íŒŒì¼ ìˆ¨ê¸°ê¸°" /f
+reg delete "HKCR\Directory\Background\shell\RCMenu_Windows í´ë¦¬ë„ˆ" /f
+reg delete "HKCR\Directory\Background\shell\RCMenu_ì‚¬ì–‘ í™•ì¸" /f
+reg delete "HKCR\Directory\Background\shell\RCMenu_íŒŒì¼ ë³´ì´ê¸°" /f
+echo X=msgbox ^("ì‚­ì œ ì„±ê³µ", vbQustion + vbOk + 4096 ,"RCMenu"^) > "%temp%\delete.vbs"
 start "" "%temp%\delete.vbs"
 del /f /q delete.vbs
 del /f /q "%temp%\yes.txt"
