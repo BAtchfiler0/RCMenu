@@ -39,7 +39,7 @@ echo Set oShell = WScript.CreateObject ^("WSCript.shell"^)
 echo X = Msgbox^("RCMenu을 삭제할겁니까?", vbQuestion + vbYesNo + 4096, "RCMenu"^)
 echo If X=vbYes then
 echo Set txtFile = fso.CreateTextFile^("%temp%\yes.txt", true^)
-echo oShell.Run ^"%0^"
+echo oShell.Run %0
 
 echo ELSEIf X=vbNo then
 
