@@ -1,4 +1,5 @@
 @echo off
+@chcp 65001 1> NUL 2> NUL
  :: 관리자 권한 요청
  ::--------------------------------
  :: Check for permissions
