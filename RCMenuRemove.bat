@@ -51,6 +51,7 @@ exit
 
 :: 있다면
 :yes
+rd /s /q "%systemdrive%\icon"
 rd /s /q "%systemdrive%\Program Files\RCMenu"
 reg delete "HKCR\*\shell\RCMenu_파일 숨기기" /f
 reg delete "HKCR\Directory\Background\shell\RCMenu_Windows 클리너" /f
