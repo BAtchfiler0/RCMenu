@@ -1,4 +1,5 @@
 @echo off
+@chcp 65001 1> NUL 2> NUL
  >nul 2>&1 "%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system"
 
  if '%errorlevel%' NEQ '0' (
