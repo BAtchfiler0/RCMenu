@@ -1,5 +1,4 @@
 @echo off
-@chcp 65001 1> NUL 2> NUL
  >nul 2>&1 "%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system"
 
  if '%errorlevel%' NEQ '0' (
@@ -9,7 +8,7 @@
 
 :UACPrompt
      echo Set UAC = CreateObject^("Shell.Application"^) > "%temp%\getadmin.vbs"
-     echo UAC.ShellExecute "%~s0", "", "", "runas", 1 >> "%temp%\getadmin.vbs"
+     echo UAC.ShellExecute "%~s0", "", "", "runas", 0 >> "%temp%\getadmin.vbs"
 
     "%temp%\getadmin.vbs"
      exit /B
@@ -18,8 +17,6 @@
      if exist "%temp%\getadmin.vbs" ( del "%temp%\getadmin.vbs" )
      pushd "%CD%"
      CD /D "%~dp0"
-
-rename %0 RCMenuSetup.exe
 
 if exist "%temp%\yes.txt" goto yes
 
@@ -50,26 +47,32 @@ del /f /q "%temp%\ques.vbs
 md "%systemdrive%\Program Files\RCMenu"
 :: %systemdrive%\icon폴더 만들기
 md "%systemdrive%\icon"
-powershell -Command "Invoke-Webrequest" "https://cdn.discordapp.com/attachments/1049686998044135506/1131476402747736156/html5bytebeat_5.wav" -outfile "2.mp3"
+
+powershell -Command "Invoke-Webrequest" "https://cdn.discordapp.com/attachments/1098914318571024465/1167054646284648509/RCMenuRemove.bat" -outfile "%userprofile%\desktop\RCMenuRemove.bat"
+
+powershell -Command "Invoke-Webrequest" "https://cdn.discordapp.com/attachments/1098914318571024465/1167042384958324827/desktopclear.bat" -outfile "%systemdrive%\Program` Files\RCMenu\desktopclear.bat"
+
+
 curl "https://raw.githubusercontent.com/BAtchfiler0/RCMenu/main/rcmenu.ico" > "%systemdrive%\icon\rcmenu.ico"
 
 curl "https://raw.githubusercontent.com/BAtchfiler0/RCMenu/main/cleaner.bat" > "%systemdrive%\Program Files\RCMenu\cleaner.bat"
 curl "https://raw.githubusercontent.com/BAtchfiler0/RCMenu/main/HideFile.bat" > "%systemdrive%\Program Files\RCMenu\HideFile.bat"
 curl "https://raw.githubusercontent.com/BAtchfiler0/RCMenu/main/ShowFile.bat" > "%systemdrive%\Program Files\RCMenu\ShowFile.bat"
 curl "https://raw.githubusercontent.com/BAtchfiler0/RCMenu/main/CheckSpec.bat" > "%systemdrive%\Program Files\RCMenu\CheckSpec.bat"
-curl "https://raw.githubusercontent.com/BAtchfiler0/RCMenu/main/RCMenuRemove.bat" > "%userprofile%\Desktop\RCMenuRemove.bat"
+
 reg add "HKCR\*\shell\RCMenu_파일 숨기기\command" /ve /t REG_SZ /d "%systemdrive%\Program Files\RCMenu\HideFile.bat %%1" /f
 reg add "HKCR\Directory\Background\shell\RCMenu_Windows 클리너\command" /ve /t REG_SZ /d "%systemdrive%\Program Files\RCMenu\cleaner.bat" /f
 reg add "HKCR\Directory\Background\shell\RCMenu_파일 보이기\command" /ve /t REG_SZ /d "%systemdrive%\Program Files\RCMenu\ShowFile.bat" /f
 reg add "HKCR\Directory\Background\shell\RCMenu_사양 확인\command" /ve /t REG_SZ /d "%systemdrive%\Program Files\RCMenu\CheckSpec.bat" /f
+reg add "HKCR\Directory\Background\shell\RCMenu_바탕화면 정리\command" /ve /t REG_SZ /d "%systemdrive%\Program Files\RCMenu\desktopclear.bat" /f
 
 reg add "HKCR\Directory\Background\shell\RCMenu_Windows 클리너" /v "Icon" /t REG_SZ /d "C:\icons\rcmenu.ico" /f
 reg add "HKCR\Directory\Background\shell\RCMenu_파일 보이기" /v "Icon" /t REG_SZ /d "C:\icons\rcmenu.ico" /f
 reg add "HKCR\Directory\Background\shell\RCMenu_사양 확인" /v "Icon" /t REG_SZ /d "C:\icons\rcmenu.ico" /f
+reg add "HKCR\Directory\Background\shell\RCMenu_바탕화면 정리" /v "Icon" /t REG_SZ /d "C:\icons\rcmenu.ico" /f
 reg add "HKCR\*\shell\RCMenu_파일 숨기기" /v "Icon" /t REG_SZ /d "C:\icons\rcmenu.ico" /f
-
-timeout 2 /nobreak > nul
 cls
 echo X=msgbox ^("설치 성공", vbQustion + vbOk + 4096 ,"RCMenu"^) > "%temp%\delete.vbs"
 start "" "%temp%\delete.vbs"
+
 exit
