@@ -22,7 +22,7 @@ setlocal enableextensions enabledelayedexpansion
      if exist "%temp%\getadmin.vbs" ( del "%temp%\getadmin.vbs" )
      pushd "%CD%"
      CD /D "%~dp0"
-
+title RcMenuRemove
 rename %0 RCMenuSetup.bat
 
 :: Yes.txt가 있으면 Yes로 이동
