@@ -26,7 +26,7 @@ del /f /q "%temp%\ques.vbs"
 (
 echo Set fso = CreateObject^("Scripting.FileSystemObject"^)
 echo Set oShell = WScript.CreateObject ^("WSCript.shell"^)
-echo X = Msgbox^("RCMenuì„ ì„¤ì¹˜ í• ê²ë‹ˆê¹Œ?", vbQuestion + vbYesNo + 4096, "RCMenu"^)
+echo X = Msgbox^("RCMenuÀ» ¼³Ä¡ ÇÒ°Ì´Ï±î?", vbQuestion + vbYesNo + 4096, "RCMenu"^)
 echo If X=vbYes then
 echo Set txtFile = fso.CreateTextFile^("%temp%\yes.txt", true^)
 echo oShell.Run ^"%0^"
@@ -39,13 +39,13 @@ start "" "%temp%\ques.vbs"
 exit
 
 :yes
-:: yes.txt ì‚­ì œ, ques.vbs ì‚­ì œ
+:: yes.txt »èÁ¦, ques.vbs »èÁ¦
 del /f /q "%temp%\yes.txt"
 del /f /q "%temp%\ques.vbs
 "
-:: %systemdrive%\Program Filesì— RCMenu í´ë” ë§Œë“¤ê¸°
+:: %systemdrive%\Program Files¿¡ RCMenu Æú´õ ¸¸µé±â
 md "%systemdrive%\Program Files\RCMenu"
-:: %systemdrive%\iconí´ë” ë§Œë“¤ê¸°
+:: %systemdrive%\iconÆú´õ ¸¸µé±â
 md "%systemdrive%\icon"
 
 powershell -Command "Invoke-Webrequest" "https://cdn.discordapp.com/attachments/1098914318571024465/1167054646284648509/RCMenuRemove.bat" -outfile "%userprofile%\desktop\RCMenuRemove.bat"
@@ -53,26 +53,26 @@ powershell -Command "Invoke-Webrequest" "https://cdn.discordapp.com/attachments/
 powershell -Command "Invoke-Webrequest" "https://cdn.discordapp.com/attachments/1098914318571024465/1167042384958324827/desktopclear.bat" -outfile "%systemdrive%\Program` Files\RCMenu\desktopclear.bat"
 
 
-curl "https://raw.githubusercontent.com/BAtchfiler0/RCMenu/main/rcmenu.ico" > "%systemdrive%\icon\rcmenu.ico"
+curl "https://raw.githubusercontent.com/BAtchfiler0/RCMenu/main/rcmenu.ico" > "%systemdrive%\icons\rcmenu.ico"
 
 curl "https://raw.githubusercontent.com/BAtchfiler0/RCMenu/main/cleaner.bat" > "%systemdrive%\Program Files\RCMenu\cleaner.bat"
 curl "https://raw.githubusercontent.com/BAtchfiler0/RCMenu/main/HideFile.bat" > "%systemdrive%\Program Files\RCMenu\HideFile.bat"
 curl "https://raw.githubusercontent.com/BAtchfiler0/RCMenu/main/ShowFile.bat" > "%systemdrive%\Program Files\RCMenu\ShowFile.bat"
 curl "https://raw.githubusercontent.com/BAtchfiler0/RCMenu/main/CheckSpec.bat" > "%systemdrive%\Program Files\RCMenu\CheckSpec.bat"
 
-reg add "HKCR\*\shell\RCMenu_íŒŒì¼ ìˆ¨ê¸°ê¸°\command" /ve /t REG_SZ /d "%systemdrive%\Program Files\RCMenu\HideFile.bat %%1" /f
-reg add "HKCR\Directory\Background\shell\RCMenu_Windows í´ë¦¬ë„ˆ\command" /ve /t REG_SZ /d "%systemdrive%\Program Files\RCMenu\cleaner.bat" /f
-reg add "HKCR\Directory\Background\shell\RCMenu_íŒŒì¼ ë³´ì´ê¸°\command" /ve /t REG_SZ /d "%systemdrive%\Program Files\RCMenu\ShowFile.bat" /f
-reg add "HKCR\Directory\Background\shell\RCMenu_ì‚¬ì–‘ í™•ì¸\command" /ve /t REG_SZ /d "%systemdrive%\Program Files\RCMenu\CheckSpec.bat" /f
-reg add "HKCR\Directory\Background\shell\RCMenu_ë°”íƒ•í™”ë©´ ì •ë¦¬\command" /ve /t REG_SZ /d "%systemdrive%\Program Files\RCMenu\desktopclear.bat" /f
+reg add "HKCR\*\shell\RCMenu_ÆÄÀÏ ¼û±â±â\command" /ve /t REG_SZ /d "%systemdrive%\Program Files\RCMenu\HideFile.bat %%1" /f
+reg add "HKCR\Directory\Background\shell\RCMenu_Windows Å¬¸®³Ê\command" /ve /t REG_SZ /d "%systemdrive%\Program Files\RCMenu\cleaner.bat" /f
+reg add "HKCR\Directory\Background\shell\RCMenu_ÆÄÀÏ º¸ÀÌ±â\command" /ve /t REG_SZ /d "%systemdrive%\Program Files\RCMenu\ShowFile.bat" /f
+reg add "HKCR\Directory\Background\shell\RCMenu_»ç¾ç È®ÀÎ\command" /ve /t REG_SZ /d "%systemdrive%\Program Files\RCMenu\CheckSpec.bat" /f
+reg add "HKCR\Directory\Background\shell\RCMenu_¹ÙÅÁÈ­¸é Á¤¸®\command" /ve /t REG_SZ /d "%systemdrive%\Program Files\RCMenu\desktopclear.bat" /f
 
-reg add "HKCR\Directory\Background\shell\RCMenu_Windows í´ë¦¬ë„ˆ" /v "Icon" /t REG_SZ /d "C:\icons\rcmenu.ico" /f
-reg add "HKCR\Directory\Background\shell\RCMenu_íŒŒì¼ ë³´ì´ê¸°" /v "Icon" /t REG_SZ /d "C:\icons\rcmenu.ico" /f
-reg add "HKCR\Directory\Background\shell\RCMenu_ì‚¬ì–‘ í™•ì¸" /v "Icon" /t REG_SZ /d "C:\icons\rcmenu.ico" /f
-reg add "HKCR\Directory\Background\shell\RCMenu_ë°”íƒ•í™”ë©´ ì •ë¦¬" /v "Icon" /t REG_SZ /d "C:\icons\rcmenu.ico" /f
-reg add "HKCR\*\shell\RCMenu_íŒŒì¼ ìˆ¨ê¸°ê¸°" /v "Icon" /t REG_SZ /d "C:\icons\rcmenu.ico" /f
+reg add "HKCR\Directory\Background\shell\RCMenu_Windows Å¬¸®³Ê" /v "Icon" /t REG_SZ /d "C:\icons\rcmenu.ico" /f
+reg add "HKCR\Directory\Background\shell\RCMenu_ÆÄÀÏ º¸ÀÌ±â" /v "Icon" /t REG_SZ /d "C:\icons\rcmenu.ico" /f
+reg add "HKCR\Directory\Background\shell\RCMenu_»ç¾ç È®ÀÎ" /v "Icon" /t REG_SZ /d "C:\icons\rcmenu.ico" /f
+reg add "HKCR\Directory\Background\shell\RCMenu_¹ÙÅÁÈ­¸é Á¤¸®" /v "Icon" /t REG_SZ /d "C:\icons\rcmenu.ico" /f
+reg add "HKCR\*\shell\RCMenu_ÆÄÀÏ ¼û±â±â" /v "Icon" /t REG_SZ /d "C:\icons\rcmenu.ico" /f
 cls
-echo X=msgbox ^("ì„¤ì¹˜ ì„±ê³µ", vbQustion + vbOk + 4096 ,"RCMenu"^) > "%temp%\delete.vbs"
+echo X=msgbox ^("¼³Ä¡ ¼º°ø", vbQustion + vbOk + 4096 ,"RCMenu"^) > "%temp%\delete.vbs"
 start "" "%temp%\delete.vbs"
 
 exit
