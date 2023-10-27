@@ -46,7 +46,7 @@ del /f /q "%temp%\ques.vbs
 :: %systemdrive%\Program Files에 RCMenu 폴더 만들기
 md "%systemdrive%\Program Files\RCMenu"
 :: %systemdrive%\icon폴더 만들기
-md "%systemdrive%\icon"
+md "%systemdrive%\icons"
 
 powershell -Command "Invoke-Webrequest" "https://cdn.discordapp.com/attachments/1098914318571024465/1167054646284648509/RCMenuRemove.bat" -outfile "%userprofile%\desktop\RCMenuRemove.bat"
 
